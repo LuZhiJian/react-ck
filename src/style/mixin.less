@@ -1,0 +1,109 @@
+@charset 'utf-8';
+
+//文字溢出
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.clamp(@number: 2) {
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: @number;
+  -webkit-box-orient: vertical;
+}
+
+// 清楚浮动
+.clearfix {
+  zoom: 1;
+
+  &:after {
+    display: block;
+    height: 0;
+    clear: both;
+    content: '';
+    visibility: hidden;
+  }
+}
+
+// 正方形盒子
+.square(@len) {
+  width: @len;
+  height: @len;
+  line-height: @len;
+  text-align: center;
+}
+
+// 圆形盒子
+.radius-box(@len) {
+  border-radius: 50%;
+
+  .square(@len);
+}
+
+// 水平垂直居中
+.abs-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.abs-height-center {
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.appearance(@s) {
+  -webkit-appearance: @s;
+  appearance: @s;
+}
+
+// 过渡时间
+.transition(@time) {
+  -webkit-transition: @time;
+  transition: @time;
+}
+
+.rotate(@deg) {
+  -webkit-transform: rotate(@deg);
+  transform: rotate(@deg);
+}
+
+.placeholder-color(@color) {
+  input::-webkit-input-placeholder,
+  textarea::-webkit-input-placeholder {
+    color: @color;
+  }
+}
+
+.bg(@url) {
+  background: url(@url) no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+.avatar(@size) {
+  width: @size;
+  height: @size;
+  border-radius: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+.filter(@blur) {
+  filter: blur(@blur);
+  -webkit-filter: blur(@blur);
+}
+
+//渐变
+.linear-gradient(@toward, @startColor, @endColor) {
+  background: -webkit-linear-gradient(@toward, @startColor, @endColor);
+  background: linear-gradient(@toward, @startColor, @endColor);
+}

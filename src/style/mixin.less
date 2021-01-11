@@ -45,12 +45,28 @@
 }
 
 // 水平垂直居中
-.abs-center {
+.abs-center(@width:null, @height:null) {
   position: absolute;
   left: 50%;
   top: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  & when (@width = null) and (@height= null){
+    transform: translate(-50%, -50%);
+  }
+  & when not(@width = null) and not(@height = null){
+    width: @width;
+    height: @height;
+    margin: -(@height / 2) 0 0 -(@width / 2);
+  }
+  & when not (@width = null) and (@height = null){
+    width: @width;
+    margin-left: -(@width / 2);
+    transform: translateY(-50%);
+  }
+  & when (@width = null) and not(@height=null){
+    height: @height;
+    margin-top: -(@height / 2);
+    transform: translateX(-50%);
+  }
 }
 
 .abs-height-center {

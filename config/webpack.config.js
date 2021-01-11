@@ -425,8 +425,9 @@ module.exports = function (webpackEnv) {
                             '@svgr/webpack?-svgo,+titleProp,+ref![path]',
                         },
                       },
-                    },
+                    }
                   ],
+                  ['import', { libraryName: 'antd', style: 'css' }],
                   isEnvDevelopment &&
                     shouldUseReactRefresh &&
                     require.resolve('react-refresh/babel'),
@@ -551,7 +552,12 @@ module.exports = function (webpackEnv) {
                   sourceMap: isEnvProduction && shouldUseSourceMap,
                 },
                 'less-loader'
-              ),
+              ).concat({
+                loader: require.resolve("style-resources-loader"),
+                options: {
+                  patterns: [path.resolve(__dirname, "../src/style/common.less")]
+                }
+              }),
               sideEffects: true,
             },
             {
